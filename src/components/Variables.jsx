@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { Handle, Position } from 'reactflow';
 import Variable from './Variable';
-import {ReactFlowProvider} from 'reactflow';
+import { ReactFlowProvider } from 'reactflow';
 
 function Variables({ data, isConnectable }) {
   const [variables, setVariables] = useState([]);
   const [variableValues, setVariableValues] = useState({});
 
   const addVariableValue = (id, VariableValue) => {
-    setVariableValues({...variableValues, [id]: VariableValue});
+    setVariableValues({ ...variableValues, [id]: VariableValue });
     //console.log(variableValues);
     data.variableValues = variableValues;
     //console.log(data);
@@ -16,7 +16,7 @@ function Variables({ data, isConnectable }) {
 
   const addVariable = () => {
     const newVariable = {
-      id: Date.now()
+      id: Date.now(),
     };
     setVariables([...variables, newVariable]);
   };
@@ -31,24 +31,29 @@ function Variables({ data, isConnectable }) {
   };
 
   return (
-      <div className="main-component-node container rounded border p-0 width">
-        <Handle type="source" position={Position.Left} style={{ background: '#555' }} id='source-variables' />
-        <div className='custom-node__header border-bottom'>
-          <div>Variables</div>
-        </div>
-          <div className="custom-node__body p-2 container">
-              <div className='border rounded container'>
-                  {variables.map((variable) => (
-                      <div key={variable.id}>
-                          <Variable id={variable.id} onDelete={deleteVariable} addVariableValue={addVariableValue} />
-                      </div>
-                  ))}
-                  <div className='text-end'>
-                      <button className='btn' onClick={addVariable}>Add variable</button>
-                  </div>
-              </div>
-          </div>
+    <div className='main-component-node container rounded border p-0 width'>
+      <div className='custom-node__header border-bottom'>
+        <div className='h5'>Variables</div>
       </div>
+      <div className='custom-node__body p-2 container'>
+        <div className='border rounded container'>
+          {variables.map((variable) => (
+            <div key={variable.id}>
+              <Variable
+                id={variable.id}
+                onDelete={deleteVariable}
+                addVariableValue={addVariableValue}
+              />
+            </div>
+          ))}
+          <div className='text-end'>
+            <button className='btn' onClick={addVariable}>
+              Add variable
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
