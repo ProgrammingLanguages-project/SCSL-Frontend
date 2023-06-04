@@ -1,6 +1,6 @@
 import { useStoreApi } from 'reactflow';
 
-const Button = () => {
+const Button = ({onChangeSubElement}) => {
   const store = useStoreApi();
   const { nodeInternals } = store.getState();
   const variablesNode = nodeInternals.get('node-2');
@@ -14,7 +14,7 @@ const Button = () => {
       <div className='input-group'>
         <span className='input-group-text'>Label: </span>
         <input
-          name='label'
+          name='content'
           type='text'
           className='form-control nodrag'
           placeholder='Click me!'
