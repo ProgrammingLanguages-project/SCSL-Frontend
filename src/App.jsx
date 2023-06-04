@@ -7,14 +7,18 @@ import ReactFlow, {
   useEdgesState,
   addEdge,
 } from 'reactflow';
-
 import 'reactflow/dist/style.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js';
+import MainComponent from './components/MainComponent';
+import Variables from './components/Variables';
 
 const initialNodes = [
-  { id: '1', position: { x: 0, y: 0 }, data: { label: '1' } },
-  { id: '2', position: { x: 0, y: 100 }, data: { label: '2' } },
+  { id: 'node-1', type: 'mainComponent', position: { x: 550, y: 150  }, data: { value: 123 }, targetPosition: 'left', },
+  { id: 'node-2', type: 'variables', position: { x: 100, y: 150 }, data: { value: 456 }, sourcePosition: 'right', },
 ];
-const initialEdges = [{ id: 'e1-2', source: '1', target: '2' }];
+const nodeTypes = { mainComponent: MainComponent, variables: Variables };
+const initialEdges = [{ id: 'e1-2', source: 'node-2', target: 'node-1'}];
 
 export default function App() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -23,18 +27,19 @@ export default function App() {
   const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
 
   return (
-    <div style={{ width: '100vw', height: '100vh' }}>
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-      >
-        <Controls />
-        <MiniMap />
-        <Background variant="dots" gap={12} size={1} />
-      </ReactFlow>
-    </div>
+      <div style={{ width: '100vw', height: '100vh' }}>
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          onConnect={onConnect}
+          nodeTypes={nodeTypes}
+        >
+          <Controls />
+          <MiniMap />
+          <Background variant="dots" gap={12} size={1} />
+        </ReactFlow>
+      </div>
   );
 }
