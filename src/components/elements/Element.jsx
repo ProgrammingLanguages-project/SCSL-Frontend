@@ -3,21 +3,17 @@ import Button from "./Button";
 import Text from "./Text";
 import Link from "./Link";
 
-const Element = ({id, onDelete}) => {
+const Element = ({id, onDelete, onChangeComponent}) => {
     const [subElements, setSubElements] = useState([]);
     const [selectedOption, setSelectedOption] = useState('');
-    const [component, setComponent] = useState({});
-    const [inputs, setInputs] = useState({})
+    const [subElementInputs, setSubElementInputs] = useState({})
 
-    /*const handleChange = (e) => {
-        const { name, value } = e.target
-        setComponent({ ...component, [name]: value })
-        setInputs(prevInput => {
-          return {
-            ...prevInput, [e.target.name]: e.target.value
-          }
-        })
-    }*/
+    const onChange = (e) => {
+        const { name, value } = e.target;
+        setSubElementInputs({ ...subElementInputs, [name]: [value] });
+        //onChangeComponent({name: , subElementInputs})
+        console.log(subElementInputs);
+    };
 
 
     const addSubElement = () => {
@@ -56,11 +52,11 @@ const Element = ({id, onDelete}) => {
                 </select>
               <button className='btn col' onClick={() => onDelete(id)}>Delete</button>
             </div>
-            {SelectedElement && <SelectedElement/>}
+            {SelectedElement && <SelectedElement onChangeComponent={onChangeComponent} />}
             <div className="container rounded border">
                 {subElements.map((subElement) => (
                     <div key={subElement.id}>
-                        <Element id={subElement.id} onDelete={deleteSubElement} handleChange={handleChange} />
+                        <Element id={subElement.id} onDelete={deleteSubElement} onChangeSubElement={onChange} />
                     </div>
                 ))}
             </div>

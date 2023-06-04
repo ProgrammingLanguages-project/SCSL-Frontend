@@ -1,7 +1,7 @@
 import React from 'react'
 import { useStoreApi } from 'reactflow';
 
-const Button = () => {
+const Button = ({onChangeSubElement}) => {
   const store = useStoreApi();
   const { nodeInternals } = store.getState();
   const variablesNode = nodeInternals.get('node-2')
@@ -13,7 +13,7 @@ const Button = () => {
         <>
             <div className="input-group">
               <span className="input-group-text">Label: </span>
-              <input name="label" type="text" className="form-control nodrag" placeholder="Click me!" aria-label="Click me!" aria-describedby="basic-addon2" />
+              <input name="content" type="text" className="form-control nodrag" placeholder="Click me!" aria-label="Click me!" aria-describedby="basic-addon2" />
             </div>
             <div className="input-group">
               <span className="input-group-text">Tag: </span>
