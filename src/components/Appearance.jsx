@@ -1,3 +1,5 @@
+import { Handle, Position } from "reactflow";
+
 export function Appearance({ data, isConnectable }) {
   const handleValueChange = (e) => {
     data.appearanceValue = e.target.value;
@@ -5,6 +7,7 @@ export function Appearance({ data, isConnectable }) {
 
   return (
     <div className='main-component-node container rounded border p-0 width'>
+      <Handle type="source" position={Position.Left} id='appearance' />
       <div className='custom-node__header border-bottom'>
         <div className='h5'>Appearance</div>
       </div>

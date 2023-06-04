@@ -23,7 +23,7 @@ export function Function({ id, onDelete, addFunctionValue }) {
             name='variable'
             type='text'
             className='form-control nodrag'
-            placeholder='Function name'
+            placeholder='myFunction'
             onChange={handleNameChange}
           />
         </div>

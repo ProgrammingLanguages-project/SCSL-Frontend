@@ -32,6 +32,7 @@ function Variables({ data, isConnectable }) {
 
   return (
     <div className='main-component-node container rounded border p-0 width'>
+      <Handle type="source" position={Position.Right} id='variables' />
       <div className='custom-node__header border-bottom'>
         <div className='h5'>Variables</div>
       </div>

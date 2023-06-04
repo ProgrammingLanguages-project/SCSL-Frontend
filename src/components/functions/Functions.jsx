@@ -28,6 +28,7 @@ export function Functions({ data, isConnectable }) {
 
   return (
     <div className='main-component-node container rounded border p-0 width'>
+      <Handle type="source" position={Position.Right} id='functions' />
       <div className='custom-node__header border-bottom'>
         <div className='h5'>Functions</div>
       </div>

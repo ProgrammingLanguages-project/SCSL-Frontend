@@ -6,7 +6,7 @@ const Button = ({onChangeSubElement}) => {
   const variablesNode = nodeInternals.get('node-2');
   const functionsNode = nodeInternals.get('node-3');
 
-  const objeto1 = variablesNode?.data?.variableValues || [];
+  const variablesValues = variablesNode?.data?.variableValues || [];
   const functionValues = functionsNode?.data?.functionValues || [];
 
   return (
@@ -55,9 +55,9 @@ const Button = ({onChangeSubElement}) => {
               <option value='' selected>
                 Choose a variable:{' '}
               </option>
-              {Object.keys(objeto1).map((key) => (
-                <option key={key} value={objeto1[key].variable}>
-                  {objeto1[key].variable}
+              {Object.keys(variablesValues).map((key) => (
+                <option key={key} value={variablesValues[key].variable}>
+                  {variablesValues[key].variable}
                 </option>
               ))}
             </select>
