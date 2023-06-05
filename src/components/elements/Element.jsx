@@ -57,7 +57,7 @@ const Element = ({id, onDelete, component}) => {
             <option value='option3'>Link</option>
             <option value='option4'>Input</option>
           </select>
-          <button className='btn col' onClick={() => onDelete(id)}>
+          <button className='btn col border-primary-subtle' onClick={() => onDelete(id)}>
             Delete
           </button>
         </div>
@@ -70,7 +70,7 @@ const Element = ({id, onDelete, component}) => {
           ))}
         </div>
         <div className='text-end'>
-          <button className='btn' onClick={addSubElement}>
+          <button className='btn border-primary-subtle' onClick={addSubElement}>
             Add subelement
           </button>
         </div>

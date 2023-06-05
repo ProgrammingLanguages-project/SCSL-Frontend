@@ -27,12 +27,12 @@ export function Functions({ data, isConnectable }) {
   };
 
   return (
-    <div className='main-component-node container rounded border p-0 width'>
+    <div className='main-component-node container rounded border p-0 width bg-success-subtle border-success-subtle'>
       <Handle type="source" position={Position.Right} id='functions' />
       <div className='custom-node__header border-bottom'>
         <div className='h5'>Functions</div>
       </div>
-      <div className='custom-node__body p-2 container'>
+      <div className='custom-node__body p-2 container bg-body'>
         <div className='border rounded container'>
           {functions.map((fun) => (
             <div key={fun.id}>
@@ -44,7 +44,7 @@ export function Functions({ data, isConnectable }) {
             </div>
           ))}
           <div className='text-end'>
-            <button className='btn' onClick={addFunction}>
+            <button className='btn border-success-subtle' onClick={addFunction}>
               Add function
             </button>
           </div>

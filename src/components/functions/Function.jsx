@@ -17,8 +17,8 @@ export function Function({ id, onDelete, addFunctionValue }) {
   return (
     <>
       <div className='container'>
-        <div className='input-group'>
-          <span className='input-group-text'>Name: </span>
+        <div className='input-group m-2'>
+          <span className='input-group-text bg-success-subtle border-success-subtle' >Name: </span>
           <input
             name='variable'
             type='text'
@@ -27,8 +27,8 @@ export function Function({ id, onDelete, addFunctionValue }) {
             onChange={handleNameChange}
           />
         </div>
-        <div className='input-group'>
-          <span className='input-group-text'>Value: </span>
+        <div className='input-group m-2'>
+          <span className='input-group-text bg-success-subtle border-success-subtle'>Value: </span>
           <textarea
             name='value'
             type='text'
@@ -39,7 +39,7 @@ export function Function({ id, onDelete, addFunctionValue }) {
         </div>
         <div className='row'>
           <div className='col'>
-            <button className='btn' onClick={() => onDelete(id)}>
+            <button className='btn border-success-subtle' onClick={() => onDelete(id)}>
               Delete
             </button>
           </div>

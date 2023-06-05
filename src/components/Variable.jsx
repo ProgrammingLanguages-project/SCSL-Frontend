@@ -17,17 +17,17 @@ const Variable = ({id, onDelete, addVariableValue}) => {
     return (
         <>
             <div className='container'>
-                <div className="input-group">
-                    <span className="input-group-text">Name: </span>
+                <div className="input-group m-2">
+                    <span className="input-group-text bg-success-subtle border-success-subtle">Name: </span>
                     <input name="variable" type="text" className="form-control nodrag" placeholder="My Component" onChange={handleNameChange} />
                 </div>
-                <div className="input-group">
-                    <span className="input-group-text">Value: </span>
+                <div className="input-group m-2">
+                    <span className="input-group-text bg-success-subtle border-success-subtle">Value: </span>
                     <input name="value" type="text" className="form-control nodrag" placeholder="My Component" onChange={handleValueChange} />
                 </div>
                 <div className="row">
                     <div className='col'>
-                        <button className='btn' onClick={() => onDelete(id)}>Delete</button>
+                        <button className='btn border-success-subtle' onClick={() => onDelete(id)}>Delete</button>
                     </div>
                 </div>
             </div>

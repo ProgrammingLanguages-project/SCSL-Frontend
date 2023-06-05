@@ -52,9 +52,9 @@ const nodeTypes = {
   functions: Functions,
   appearance: Appearance,
 };
-const initialEdges = [{ id: '2-1', source: 'node-2', target: 'node-1', markerEnd: { type: MarkerType.ArrowClosed }, targetHandle: 'main-left' },
-                      { id: '3-1', source: 'node-3', target: 'node-1', markerEnd: { type: MarkerType.ArrowClosed }, targetHandle: 'main-left' },
-                      { id: '4-1', source: 'node-4', target: 'node-1', markerEnd: { type: MarkerType.ArrowClosed }, targetHandle: 'main-right' }];
+const initialEdges = [{ id: '2-1', source: 'node-2', target: 'node-1', markerEnd: { type: MarkerType.ArrowClosed }, targetHandle: 'main-left', animated: true },
+                      { id: '3-1', source: 'node-3', target: 'node-1', markerEnd: { type: MarkerType.ArrowClosed }, targetHandle: 'main-left', animated: true },
+                      { id: '4-1', source: 'node-4', target: 'node-1', markerEnd: { type: MarkerType.ArrowClosed }, targetHandle: 'main-right', animated: true }];
 
 export default function App() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);

@@ -11,8 +11,8 @@ const Button = ({onChangeSubElement}) => {
 
   return (
     <>
-      <div className='input-group'>
-        <span className='input-group-text'>Label: </span>
+      <div className='input-group m-2'>
+        <span className='input-group-text text-primary-emphasis bg-primary-subtle border-primary-subtle'>Label: </span>
         <input
           name='content'
           type='text'
@@ -22,8 +22,8 @@ const Button = ({onChangeSubElement}) => {
           aria-describedby='basic-addon2'
         />
       </div>
-      <div className='input-group'>
-        <span className='input-group-text'>Tag: </span>
+      <div className='input-group m-2'>
+        <span className='input-group-text text-primary-emphasis bg-primary-subtle border-primary-subtle'>Tag: </span>
         <input
           name='tag'
           type='text'
@@ -33,11 +33,11 @@ const Button = ({onChangeSubElement}) => {
           aria-describedby='basic-addon3'
         />
       </div>
-      <div className='input-group'>
-        <span className='input-group-text'>Click: </span>
+      <div className='input-group m-2'>
+        <span className='input-group-text text-primary-emphasis bg-primary-subtle border-primary-subtle'>Click: </span>
         <div>
-          <div className='input-group'>
-            <span className='input-group-text'>Function: </span>
+          <div className='input-group m-2'>
+            <span className='input-group-text text-primary-emphasis bg-primary-subtle border-primary-subtle'>Function: </span>
             <select className='form-select col' aria-label='Type'>
               <option value='' selected>
                 Choose a function:{' '}
@@ -49,8 +49,8 @@ const Button = ({onChangeSubElement}) => {
               ))}
             </select>
           </div>
-          <div className='input-group'>
-            <span className='input-group-text'>Variable: </span>
+          <div className='input-group m-2'>
+            <span className='input-group-text text-primary-emphasis bg-primary-subtle border-primary-subtle'>Variable: </span>
             <select className='form-select col' aria-label='Type'>
               <option value='' selected>
                 Choose a variable:{' '}
