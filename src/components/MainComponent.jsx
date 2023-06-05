@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Handle, Position, useStoreApi } from 'reactflow';
 import Element from './elements/Element';
 import axios from 'axios';
+import { Translation } from './Translation';
 
 function calculateRender(parent) {
   const render = calculateElement(parent);
@@ -32,7 +33,7 @@ function calculateElement({ element_type, subElements, props }) {
 
 // eslint-disable-next-line react/prop-types
 function MainComponent() {
-  const [render, setRender] = useState([]);
+  const [translation, setTranslation] = useState('');
   const [component, setComponent] = useState({
     NAME: [],
     PROPS: [],
@@ -98,39 +99,44 @@ function MainComponent() {
     await axios
       .post('http://localhost:3000/translate', { SCSL: resultado.slice(1, -1) })
       .then((response) => {
+        setTranslation(response.data);
         console.log(response);
       })
       .catch((error) => {
+        setTranslation(`Something went wrong... ${error.message || error}`);
         console.log(error);
       });
   };
 
   return (
-    <div className='main-component-node container rounded border p-0 width border-primary-subtle bg-primary-subtle border-primary-subtle text-primary-emphasis'>
-      <Handle type='target' position={Position.Left} id='main-left' />
-      <Handle type='target' position={Position.Right} id='main-right' />
-      <div className='custom-node__header border-bottom'>
-        <div className='input-group'>
-          <span className='input-group-text text-primary-emphasis bg-primary-subtle'>
-            Name:{' '}
-          </span>
-          <input
-            type='text'
-            className='form-control nodrag'
-            placeholder='My Component'
-            onChange={(e) => (component.NAME = [`°${e.target.value}°`])}
-          />
+    <>
+      <div className='main-component-node container rounded border p-0 width border-primary-subtle bg-primary-subtle border-primary-subtle text-primary-emphasis'>
+        <Handle type='target' position={Position.Left} id='main-left' />
+        <Handle type='target' position={Position.Right} id='main-right' />
+        <div className='custom-node__header border-bottom'>
+          <div className='input-group'>
+            <span className='input-group-text text-primary-emphasis bg-primary-subtle'>
+              Name:{' '}
+            </span>
+            <input
+              type='text'
+              className='form-control nodrag'
+              placeholder='My Component'
+              onChange={(e) => (component.NAME = [`°${e.target.value}°`])}
+            />
+          </div>
         </div>
-      </div>
-      <div className='custom-node__body p-2 container bg-body'>
-        <div className='border rounded container'>
-          <Element id={parent.id} onChange={onParentChange} />
+        <div className='custom-node__body p-2 container bg-body'>
+          <div className='border rounded container'>
+            <Element id={parent.id} onChange={onParentChange} />
+          </div>
         </div>
+        <button className='btn' onClick={handleCreateComponent}>
+          CREATE COMPONENT
+        </button>
       </div>
-      <button className='btn' onClick={handleCreateComponent}>
-        CREATE COMPONENT
-      </button>
-    </div>
+      {translation && <Translation translation={translation} />}
+    </>
   );
 }
 
