@@ -29,10 +29,10 @@ const Button = ({ onElementPropsChange }) => {
       console.log('[D] property: ', property);
       newLinkProps = {
         ...buttonProps,
-        click: { ...buttonProps.click, [property]: value },
+        click: { ...buttonProps.click, [property]: `${value}()` },
       };
     } else {
-      newLinkProps = { ...buttonProps, [name]: value };
+      newLinkProps = { ...buttonProps, [name]: `°${value}°` };
     }
     onElementPropsChange(newLinkProps);
     setButtonProps(newLinkProps);
@@ -91,7 +91,6 @@ const Button = ({ onElementPropsChange }) => {
               className='form-select col'
               aria-label='Type'
               name='click.variable'
-              onChange={onChange}
             >
               <option value='' selected>
                 Choose a variable:{' '}

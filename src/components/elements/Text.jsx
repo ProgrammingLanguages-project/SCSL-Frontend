@@ -9,7 +9,7 @@ const Text = ({ onElementPropsChange }) => {
 
   const onChange = (e) => {
     const { name, value } = e.target;
-    const newTextProps = { ...textProps, [name]: value };
+    const newTextProps = { ...textProps, [name]: `°${value}°` };
     onElementPropsChange(newTextProps);
     setTextProps(newTextProps);
   };

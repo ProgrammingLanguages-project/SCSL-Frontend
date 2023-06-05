@@ -5,7 +5,7 @@ import axios from 'axios';
 
 function calculateRender(parent) {
   const render = calculateElement(parent);
-  console.log('[D] render: ', render);
+  return render;
 }
 
 function calculateElements(elements) {
@@ -32,12 +32,12 @@ function calculateElement({ element_type, subElements, props }) {
 
 // eslint-disable-next-line react/prop-types
 function MainComponent() {
+  const [render, setRender] = useState([]);
   const [component, setComponent] = useState({
     NAME: [],
     PROPS: [],
     FUNCTIONS: [],
     STYLES: [],
-    RENDER: [],
   });
 
   const store = useStoreApi();
@@ -69,17 +69,26 @@ function MainComponent() {
   };
 
   const handleCreateComponent = () => {
-    component.RENDER = calculateRender(parent);
-    upload();
+    upload({ ...component, RENDER: [calculateRender(parent)] });
   };
 
-  const upload = async () => {
+  const upload = async (component) => {
     const stringComponent = JSON.stringify(component);
     // Se debe eliminar las comillas dobles existentes en el string
     const resultado = stringComponent
       .replace(/"/g, '')
       .replace(/°/g, '"')
-      .replace(/],/g, ']');
+      .replace(/],/g, ']')
+      // Se debe reemplazar [{ por [
+      .replace(/\[{/g, '[')
+      .replace(/}]/g, ']')
+      .replace(/;]/g, ';}]')
+      .replace(/:{/g, '{')
+      .replace(/",/g, '";')
+      .replace(/click{function:/g, 'on_click: function_')
+      .replace(/,variable:}/g, '')
+      .replace(/\(\)}]/g, '();}]')
+    console.log(resultado.slice(1, -1));
     await axios
       .post('http://localhost:3000/translate', { SCSL: resultado.slice(1, -1) })
       .then((response) => {

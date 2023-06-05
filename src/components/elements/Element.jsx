@@ -19,8 +19,9 @@ const Element = ({ id, onDelete, onChange }) => {
   };
 
   const handleTypeChange = (e) => {
-    setElement({ ...element, element_type: e.target.value });
-    onChange && onChange({ ...element, element_type: e.target.value });
+    const newElement = { id, element_type: e.target.value, subElements: [] };
+    setElement(newElement);
+    onChange && onChange(newElement);
   };
 
   const addSubElement = () => {
