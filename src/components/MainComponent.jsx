@@ -48,7 +48,7 @@ function MainComponent() {
 
   const variablesValues = variablesNode?.data?.variableValues || [];
   const functionValues = functionsNode?.data?.functionValues || [];
-  const appearanceValue = appearanceNode?.data?.appearanceValue || [];
+  const appearanceValue = appearanceNode?.data?.appearanceValue || "";
 
   const props = Object.keys(variablesValues).map(
     (key) =>
@@ -75,7 +75,9 @@ function MainComponent() {
   const upload = async (component) => {
     const stringComponent = JSON.stringify(component);
     // Se debe eliminar las comillas dobles existentes en el string
+    console.log(stringComponent);
     const resultado = stringComponent
+      .replace(/;"}}],"label":"[A-Za-z°,":;}]*/g, ';}];}}];')
       .replace(/"/g, '')
       .replace(/°/g, '"')
       .replace(/],/g, ']')
@@ -84,10 +86,14 @@ function MainComponent() {
       .replace(/}]/g, ']')
       .replace(/;]/g, ';}]')
       .replace(/:{/g, '{')
-      .replace(/",/g, '";')
       .replace(/click{function:/g, 'on_click: function_')
-      .replace(/,variable:}/g, '')
-      .replace(/\(\)}]/g, '();}]')
+      .replace(/;,/g, ';')
+      .replace(/xxcontent/g, 'content')
+      .replace(/\(\);}}/g, '();}')
+      .replace(/\(\);}}/g, '();')
+      .replace(/;,/g, ';content:')
+      .replace(/content:{/g, 'content:[')
+
     console.log(resultado.slice(1, -1));
     await axios
       .post('http://localhost:3000/translate', { SCSL: resultado.slice(1, -1) })

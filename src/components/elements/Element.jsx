@@ -57,8 +57,8 @@ const Element = ({ id, onDelete, onChange }) => {
 
   const elementTypeMap = {
     element_button: Button,
-    element_text: Text,
-    element_link: Link,
+    element_p: Text,
+    element_a: Link,
     element_input: Input,
     element_div: Div,
   };
@@ -77,8 +77,8 @@ const Element = ({ id, onDelete, onChange }) => {
           <option value=''>Select an element</option>
           <option value='element_div'>Div</option>
           <option value='element_button'>Button</option>
-          <option value='element_text'>Text</option>
-          <option value='element_link'>Link</option>
+          <option value='element_p'>Text</option>
+          <option value='element_a'>Link</option>
           <option value='element_input'>Input</option>
         </select>
         {onDelete && (

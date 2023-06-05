@@ -3,14 +3,14 @@ import { useState } from 'react';
 // eslint-disable-next-line react/prop-types
 const Link = ({ onElementPropsChange }) => {
   const [linkProps, setLinkProps] = useState({
-    link: '',
-    message: '',
-    tag: '',
+    href: '',
+    id: '',
+    xxcontent: '',
   });
 
   const onChange = (e) => {
     const { name, value } = e.target;
-    const newLinkProps = { ...linkProps, [name]: value };
+    const newLinkProps = { ...linkProps, [name]: `°${value}°;` };
     onElementPropsChange(newLinkProps);
     setLinkProps(newLinkProps);
   };
@@ -27,7 +27,7 @@ const Link = ({ onElementPropsChange }) => {
           placeholder='www.mylink.com'
           aria-label='www.mylink.com'
           aria-describedby='basic-addon2'
-          name='link'
+          name='href'
           onChange={onChange}
         />
       </div>
@@ -41,7 +41,7 @@ const Link = ({ onElementPropsChange }) => {
           placeholder='A funny animal video'
           aria-label='A funny animal video'
           aria-describedby='basic-addon2'
-          name='message'
+          name='xxcontent'
           onChange={onChange}
         />
       </div>
@@ -55,7 +55,7 @@ const Link = ({ onElementPropsChange }) => {
           placeholder='My hyperlink'
           aria-label='My hyperlink'
           aria-describedby='basic-addon2'
-          name='tag'
+          name='id'
           onChange={onChange}
         />
       </div>

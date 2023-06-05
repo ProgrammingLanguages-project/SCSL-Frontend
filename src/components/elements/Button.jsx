@@ -13,10 +13,9 @@ const Button = ({ onElementPropsChange }) => {
 
   const [buttonProps, setButtonProps] = useState({
     label: '',
-    tag: '',
+    id: '',
     click: {
       function: '',
-      variable: '',
     },
   });
 
@@ -29,10 +28,10 @@ const Button = ({ onElementPropsChange }) => {
       console.log('[D] property: ', property);
       newLinkProps = {
         ...buttonProps,
-        click: { ...buttonProps.click, [property]: `${value}()` },
+        click: { ...buttonProps.click, [property]: `${value}();` },
       };
     } else {
-      newLinkProps = { ...buttonProps, [name]: `°${value}°` };
+      newLinkProps = { ...buttonProps, [name]: `°${value}°;` };
     }
     onElementPropsChange(newLinkProps);
     setButtonProps(newLinkProps);
@@ -60,7 +59,7 @@ const Button = ({ onElementPropsChange }) => {
           placeholder='My Component'
           aria-label='My Component'
           aria-describedby='basic-addon3'
-          name='tag'
+          name='id'
           onChange={onChange}
         />
       </div>

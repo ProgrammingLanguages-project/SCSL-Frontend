@@ -9,7 +9,7 @@ const Input = ({ onElementPropsChange }) => {
 
   const onChange = (e) => {
     const { name, value } = e.target;
-    const newInputProps = { ...inputProps, [name]: value };
+    const newInputProps = { ...inputProps, [name]: `°${value}°;` };
     onElementPropsChange(newInputProps);
     setInputProps(newInputProps);
   };
