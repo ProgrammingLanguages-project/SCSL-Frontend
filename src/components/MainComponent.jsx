@@ -94,12 +94,13 @@ function MainComponent() {
       .replace(/\(\);}}/g, '();')
       .replace(/;,/g, ';content:')
       .replace(/content:{/g, 'content:[')
+      .replace(/";}]}]/g, '";}];}];}]')
 
     console.log(resultado.slice(1, -1));
     await axios
       .post('http://localhost:3000/translate', { SCSL: resultado.slice(1, -1) })
       .then((response) => {
-        setTranslation(response.data);
+        setTranslation(JSON.stringify(response.data));
         console.log(response);
       })
       .catch((error) => {
