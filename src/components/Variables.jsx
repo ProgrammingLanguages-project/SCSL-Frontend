@@ -31,12 +31,12 @@ function Variables({ data, isConnectable }) {
   };
 
   return (
-    <div className='main-component-node container rounded border p-0 width'>
+    <div className='main-component-node container rounded border p-0 width bg-success-subtle border-success-subtle'>
       <Handle type="source" position={Position.Right} id='variables' />
       <div className='custom-node__header border-bottom'>
         <div className='h5'>Variables</div>
       </div>
-      <div className='custom-node__body p-2 container'>
+      <div className='custom-node__body p-2 container bg-body'>
         <div className='border rounded container'>
           {variables.map((variable) => (
             <div key={variable.id}>
@@ -48,7 +48,7 @@ function Variables({ data, isConnectable }) {
             </div>
           ))}
           <div className='text-end'>
-            <button className='btn' onClick={addVariable}>
+            <button className='btn border-success-subtle  ' onClick={addVariable}>
               Add variable
             </button>
           </div>
