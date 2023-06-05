@@ -58,7 +58,7 @@ function MainComponent({ data, isConnectable }) {
         <div className='border rounded container'>
           {elements.map((element) => (
             <div key={element.id}>
-              <Element id={element.id} onDelete={deleteElement} onChangeComponent={onChange} />
+              <Element id={element.id} onDelete={deleteElement} component={component} />
             </div>
           ))}
           <div className='text-end'>

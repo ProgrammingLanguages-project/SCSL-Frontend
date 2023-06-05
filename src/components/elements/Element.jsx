@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import Button from './Button';
 import Text from './Text';
 import Link from './Link';
+import Input from './Input';
 
-const Element = ({id, onDelete, onChangeComponent}) => {
+const Element = ({id, onDelete, component}) => {
     const [subElements, setSubElements] = useState([]);
     const [selectedOption, setSelectedOption] = useState('');
-    const [subElementInputs, setSubElementInputs] = useState({})
+    const [subElementInputs, setSubElementInputs] = useState({});
+    const [subElementComponent, setSubElementComponent] = useState({});
 
-    const onChange = (e) => {
-        const { name, value } = e.target;
-        setSubElementInputs({ ...subElementInputs, [name]: [value] });
-        //onChangeComponent({name: , subElementInputs})
-        console.log(subElementInputs);
+    const onChange = (element, props) => {
+      subElementComponent[element] = props
+      component.RENDER[element] = subElementComponent[element]
     };
 
   const addSubElement = () => {
@@ -37,6 +37,7 @@ const Element = ({id, onDelete, onChangeComponent}) => {
     option1: Button,
     option2: Text,
     option3: Link,
+    option4: Input,
   };
 
   const SelectedElement = elementMapping[selectedOption];
@@ -54,16 +55,17 @@ const Element = ({id, onDelete, onChangeComponent}) => {
             <option value='option1'>Button</option>
             <option value='option2'>Text</option>
             <option value='option3'>Link</option>
+            <option value='option4'>Input</option>
           </select>
           <button className='btn col' onClick={() => onDelete(id)}>
             Delete
           </button>
         </div>
-        {SelectedElement && <SelectedElement />}
+        {SelectedElement && <SelectedElement onChangeSubElement={onChange} />}
         <div className='container rounded border'>
           {subElements.map((subElement) => (
             <div key={subElement.id}>
-              <Element id={subElement.id} onDelete={deleteSubElement} onChangeSubElement={onChange} />
+              <Element id={subElement.id} onDelete={deleteSubElement} component={component} />
             </div>
           ))}
         </div>
